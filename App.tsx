@@ -8,6 +8,7 @@ import { NativeBaseProvider, StatusBar } from 'native-base';
 import { StyleSheet } from 'react-native';
 import { Loading } from './src/components/Loading';
 import { SignIn } from './src/screens/SignIn';
+import { THEME } from './src/styles/theme';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -17,7 +18,7 @@ export default function App() {
   });
 
   return (
-    <NativeBaseProvider>
+    <NativeBaseProvider theme={THEME}>
       <StatusBar
         barStyle="light-content"
         backgroundColor="transparent"
