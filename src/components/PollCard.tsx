@@ -3,7 +3,7 @@ import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
 
 import { ParticipantProps, Participants } from './Participants';
 
-export interface PollPros {
+export interface PollCardProps {
   id: string;
   code: string;
   title: string;
@@ -19,7 +19,7 @@ export interface PollPros {
 }
 
 interface Props extends TouchableOpacityProps {
-  data: PollPros;
+  data: PollCardProps;
 }
 
 export function PollCard({ data, ...rest }: Props) {
