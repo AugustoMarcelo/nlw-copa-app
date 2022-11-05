@@ -8,7 +8,7 @@ import { NativeBaseProvider, StatusBar } from 'native-base';
 import { StyleSheet } from 'react-native';
 import { Loading } from './src/components/Loading';
 import { AuthContextProvider } from './src/contexts/AuthContext';
-import { SignIn } from './src/screens/SignIn';
+import { Routes } from './src/routes';
 import { THEME } from './src/styles/theme';
 
 export default function App() {
@@ -26,7 +26,7 @@ export default function App() {
           backgroundColor="transparent"
           translucent
         />
-        {!fontsLoaded ? <Loading /> : <SignIn />}
+        {!fontsLoaded ? <Loading /> : <Routes />}
       </AuthContextProvider>
     </NativeBaseProvider>
   );
