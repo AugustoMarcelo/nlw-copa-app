@@ -2,6 +2,7 @@ import { makeRedirectUri } from 'expo-auth-session';
 import { useAuthRequest } from 'expo-auth-session/build/providers/Google';
 import { maybeCompleteAuthSession } from 'expo-web-browser';
 import { createContext, ReactNode, useEffect, useState } from 'react';
+import { api } from '../services/api';
 
 maybeCompleteAuthSession();
 
@@ -12,7 +13,7 @@ interface UserProps {
 
 export interface AuthContextDataProps {
   user: UserProps;
-  isUserLoading: Boolean;
+  isUserLoading: boolean;
   signIn: () => Promise<void>;
 }
 
@@ -46,7 +47,24 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
   }
 
   async function signInWithGoogle(access_token: string) {
-    console.log(`Authentication token: ${access_token}`);
+    try {
+      setIsUserLoading(true);
+
+      const tokenResponse = await api.post('/users', {
+        access_token,
+      });
+
+      api.defaults.headers.common.Authorization = `Bearer ${tokenResponse.data.token}`;
+
+      const userInfoResponse = await api.get('/me');
+
+      setUser(userInfoResponse.data.user);
+    } catch (error) {
+      console.log(error);
+      throw error;
+    } finally {
+      setIsUserLoading(false);
+    }
   }
 
   useEffect(() => {
