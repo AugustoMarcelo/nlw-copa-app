@@ -1,15 +1,15 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { CreatePool } from '../screens/CreatePool';
-import { Pools } from '../screens/Pools';
+import { CreatePoll } from '../screens/CreatePoll';
+import { Polls } from '../screens/Polls';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
 export function AppRoutes() {
   return (
     <Navigator>
-      <Screen name="CreatePool" component={CreatePool} />
+      <Screen name="CreatePool" component={CreatePoll} />
 
-      <Screen name="Pools" component={Pools} />
+      <Screen name="Polls" component={Polls} />
     </Navigator>
   );
 }
