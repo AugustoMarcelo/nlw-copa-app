@@ -6,10 +6,11 @@ import { Input } from './Input';
 interface Props {
   code: string;
   position: 'left' | 'right';
+  initialValue?: string;
   onChangeText: (value: string) => void;
 }
 
-export function Team({ code, position, onChangeText }: Props) {
+export function Team({ code, position, initialValue, onChangeText }: Props) {
   return (
     <HStack alignItems="center">
       {position === 'left' && (
@@ -22,6 +23,7 @@ export function Team({ code, position, onChangeText }: Props) {
         textAlign="center"
         fontSize="xs"
         keyboardType="numeric"
+        value={initialValue}
         onChangeText={onChangeText}
       />
 
