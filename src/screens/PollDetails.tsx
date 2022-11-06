@@ -3,6 +3,7 @@ import { HStack, useToast, VStack } from 'native-base';
 import { Header } from '../components/Header';
 
 import { useEffect, useState } from 'react';
+import { Share } from 'react-native';
 import { EmptyMyPollList } from '../components/EmptyMyPollList';
 import { Loading } from '../components/Loading';
 import { Option } from '../components/Option';
@@ -43,6 +44,12 @@ export function PollDetails() {
     }
   }
 
+  async function sharePollCode() {
+    await Share.share({
+      message: poll.code,
+    });
+  }
+
   useEffect(() => {
     fetchPoll();
   }, [id]);
@@ -51,7 +58,12 @@ export function PollDetails() {
 
   return (
     <VStack flex={1} bgColor="gray.900">
-      <Header title="Poll Title" showBackButton showShareButton />
+      <Header
+        title={poll.title}
+        showBackButton
+        showShareButton
+        onShare={sharePollCode}
+      />
 
       {poll._count.participants > 0 ? (
         <VStack px={5} flex={1}>
