@@ -5,6 +5,7 @@ import { Header } from '../components/Header';
 import { useEffect, useState } from 'react';
 import { Share } from 'react-native';
 import { EmptyMyPollList } from '../components/EmptyMyPollList';
+import { Guesses } from '../components/Guesses';
 import { Loading } from '../components/Loading';
 import { Option } from '../components/Option';
 import { PollCardProps } from '../components/PollCard';
@@ -81,6 +82,8 @@ export function PollDetails() {
               onPress={() => setOptionSelected('group_ranking')}
             />
           </HStack>
+
+          <Guesses pollId={poll.id} />
         </VStack>
       ) : (
         <EmptyMyPollList code={poll.code} />
